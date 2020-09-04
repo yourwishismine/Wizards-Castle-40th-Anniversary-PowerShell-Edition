@@ -52,4 +52,4 @@ Project is: _finished_
 Project based on the 1980 Exidy Sorcerer game written by JOSEPH R. POWER
 
 ## Contact
-Created by Daniel Kill [@yourwishismine](https://yourwishismine-on.blogspot.com/)
+Created by Daniel Kill [@yourwishismine](https://twitter.com/yourwishismine)
