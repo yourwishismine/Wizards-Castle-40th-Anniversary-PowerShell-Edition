@@ -43,6 +43,7 @@ Game is fully playable.
 * Added non-interactive elements to empty rooms
 
 ## To-do-list
+* Fix any bugs that become known
 * Split code up into smaller files
 * Add addtional monsters, spells and curses
 * Other possibilities...
