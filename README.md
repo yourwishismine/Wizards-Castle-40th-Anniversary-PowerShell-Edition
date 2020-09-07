@@ -1,6 +1,6 @@
 # Wizard's Castle (40th Anniversary PowerShell Edition)
-> A remake of the 1980 Exidy Sorcerer game written by JOSEPH R. POWER
-> The instructions are included with the game.
+> A remake of the 1980 Exidy Sorcerer game written by JOSEPH R. POWER  
+> The instructions are included with the game.  
 > I stayed mostly true to the original, but added some additional functionality.
 
 ## Table of contents
