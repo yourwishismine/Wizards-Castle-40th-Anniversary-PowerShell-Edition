@@ -30,11 +30,11 @@ Exidy Sorcerer game code originally published in the July 1980 edition of Recrea
 * Heavily tested in PowerShell 7.0.3
 
 ## Setup
-Clone the repository and run The_Wizards_Castle.ps1.
-At minimum you need the 3 files:
-    The_Wizards_Castle.ps1
-    New-Character.psm1
-    Instructions.txt
+Clone the repository and run The_Wizards_Castle.ps1.  
+At minimum you need the 3 files:  
+* The_Wizards_Castle.ps1
+* New-Character.psm1
+* Instructions.txt
 
 ## Features
 Game is fully playable.
