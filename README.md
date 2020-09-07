@@ -19,7 +19,7 @@ A full PowerShell remake of the 1980 classic, the Wizard's Castle.
 In addition I have added some new elements to the game.  
 I deeply enjoyed this game growing up and wanted to make it for a modern programming language.  
 I chose PowerShell as it gave me an opportunity to program in a language I have grown to love.  
-This project has been a the dedication of many of my evenings, nights and weekends.  
+This project has been the dedication of many of my evenings, nights and weekends.  
 Exidy Sorcerer game code originally published in the July 1980 edition of Recreational Computing:  
 * https://archive.org/details/1980-07-recreational-computing
 
