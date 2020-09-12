@@ -1883,7 +1883,7 @@ function Invoke-MainFunc {
 
 # Main Starting Point (main loop)
 if (-not (Test-Path -Path "./WizardsCastleTemp_$(Get-Date -Format FileDate)")) {
-    if (Get-Command -Name pxsh -ErrorAction SilentlyContinue) {
+    if (Get-Command -Name pwsh -ErrorAction SilentlyContinue) {
         Start-Process pwsh "-WindowStyle Maximized -NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
     }
     else {
