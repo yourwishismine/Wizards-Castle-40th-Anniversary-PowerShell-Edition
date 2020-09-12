@@ -1884,10 +1884,20 @@ function Invoke-MainFunc {
 # Main Starting Point (main loop)
 if (-not (Test-Path -Path "./WizardsCastleTemp_$(Get-Date -Format FileDate)")) {
     if (Get-Command -Name pwsh -ErrorAction SilentlyContinue) {
-        Start-Process pwsh "-WindowStyle Maximized -NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
+        if ($env:OS) {
+            Start-Process pwsh "-WindowStyle Maximized -NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
+        }
+        else {
+            Start-Process pwsh "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
+        }
     }
     else {
-        Start-Process PowerShell.exe "-WindowStyle Maximized -NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
+        if ($env:OS) {
+            Start-Process PowerShell.exe "-WindowStyle Maximized -NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
+        }
+        else {
+            Start-Process PowerShell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
+        }
     }
     New-Item -ItemType File -Name "WizardsCastleTemp_$(Get-Date -Format FileDate)"
     Exit
@@ -1901,7 +1911,9 @@ if (-not (($Host.Version).Major -gt 4)) {
     Exit
 }
 do {
-    Remove-Item -Path "./WizardsCastleTemp_$(Get-Date -Format FileDate)"
+    if (Test-Path -Path "./WizardsCastleTemp_$(Get-Date -Format FileDate)") {
+        Remove-Item -Path "./WizardsCastleTemp_$(Get-Date -Format FileDate)"
+    }
     Clear-Host
     Remove-Variable -Name action, amount, choice, column, columnMinus, columnPlus, content, extraPoints, i, knownMap, level, map, noCommand, player, playerActions, race, races, roomMessages, roomObject, roomValues, row, rowMinus, rowPlus, sex, tempValueLocal, tempValue, treasures -ErrorAction SilentlyContinue
     Get-Variable -Name "*monster*" | Remove-Variable
