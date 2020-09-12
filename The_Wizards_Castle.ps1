@@ -15,7 +15,10 @@
 .FUNCTIONALITY
     Implements Wizard's Castle in PowerShell with some fun modifications to the original game.
 #>
-Import-Module .\New-Character.psm1
+Clear-Host
+Set-Location -Path $PSScriptRoot
+Import-Module "$($PSScriptRoot)\New-Character.psm1"
+
 
 function Get-WindowSize() {
     $Host.UI.RawUI.WindowSize
@@ -30,7 +33,6 @@ function Get-WindowHeight() {
 }
 
 function Show-StartingMessages {
-    Write-Warning "Please MAXIMIZE this Window before continuing!"
     Write-Output "Welcome to Wizard's Castle (40th Anniversary PowerShell Edition)"
     Write-Output "`nCopyright (C) 1980 by Joseph R Power"
     Write-Output "Last Revised - 04/12/80  11:10 PM"
@@ -58,7 +60,8 @@ function Show-StartingMessages {
     # Modified: 2020-08-02 by Daniel Kill
     # Modified: 2020-08-03 by Daniel Kill
     # Modified: 2020-09-03 by Daniel Kill
-    Write-Output "# Modified: 2020-09-03 by Daniel Kill"
+    # Modified: 2020-09-12 by Daniel Kill
+    Write-Output "# Modified: 2020-09-12 by Daniel Kill"
     Read-Host -Prompt "`nPress Enter to continue"
     
     Clear-Host
@@ -181,7 +184,12 @@ function Invoke-WordWrap ([string]$string, [int]$limit) {
     $string = $string.Replace("`t", "        ") # tabs are 8 spaces by default on the PowerShell console
     foreach ($word in $string.Split(" ")) {
         if ($thisLine.Length + $word.Length -lt $limit) {
-            $thisLine += (($thisLine.Length -eq 0 ? "" : " ") + $word)
+            if ($thisLine.Length -eq 0) {
+                $thisLine += "" + $word
+            }
+            else {
+                $thisLine += " " + $word
+            }
         }
         else {
             $lines++
@@ -1873,8 +1881,27 @@ function Invoke-MainFunc {
     } while ($action -ne "Q")
 }
 
+# Main Starting Point (main loop)
+if (-not (Test-Path -Path "./WizardsCastleTemp_$(Get-Date -Format FileDate)")) {
+    if (Get-Command -Name pxsh -ErrorAction SilentlyContinue) {
+        Start-Process pwsh "-WindowStyle Maximized -NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
+    }
+    else {
+        Start-Process PowerShell.exe "-WindowStyle Maximized -NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
+    }
+    New-Item -ItemType File -Name "WizardsCastleTemp_$(Get-Date -Format FileDate)"
+    Exit
+}
+if (-not (($Host.Version).Major -gt 4)) {
+    Clear-Host
+    ""
+    Write-Warning -Message "*** PowerShell version MUST be verion 5 or greater ***"
+    ""
+    Pause
+    Exit
+}
 do {
-    Set-Location -Path $PSScriptRoot
+    Remove-Item -Path "./WizardsCastleTemp_$(Get-Date -Format FileDate)"
     Clear-Host
     Remove-Variable -Name action, amount, choice, column, columnMinus, columnPlus, content, extraPoints, i, knownMap, level, map, noCommand, player, playerActions, race, races, roomMessages, roomObject, roomValues, row, rowMinus, rowPlus, sex, tempValueLocal, tempValue, treasures -ErrorAction SilentlyContinue
     Get-Variable -Name "*monster*" | Remove-Variable
