@@ -9,7 +9,6 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
-* [To-do-list](To-do-list)
 * [Status](#status)
 * [Inspiration](#inspiration)
 * [Contact](#contact)
